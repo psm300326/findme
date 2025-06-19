@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Send Location</title>
+</head>
+<body>
+  <h2>Click below to send your location</h2>
+  <button onclick="sendLocation()">Send My Location</button>
+
+  <script>
+    function sendLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
+
+          const telegramBotToken = 'REPLACE_WITH_YOUR_BOT_TOKEN';
+          const chatId = 'REPLACE_WITH_YOUR_CHAT_ID';
+          const message = `Location: https://maps.google.com/?q=${latitude},${longitude}`;
+
+          fetch(`https://api.telegram.org/bot${telegramBotToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+            .then(response => alert("Location sent!"))
+            .catch(error => alert("Failed to send location."));
+        }, function(error) {
+          alert("Permission denied or error occurred.");
+        });
+      } else {
+        alert("Geolocation not supported.");
+      }
+    }
+  </script>
+</body>
+</html>
